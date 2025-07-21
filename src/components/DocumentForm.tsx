@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase, Document } from '../lib/supabase'
-import { X, Save, Calendar, User, FileText } from 'lucide-react'
+import { X, Save, Calendar, FileText } from 'lucide-react'
 
 interface DocumentFormState {
   document_type: string

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase, Document } from '../lib/supabase'
 import { getDaysUntilExpiry, getExpiryStatus, formatDate } from '../lib/utils'
-import { AlertTriangle, Calendar, FileText, Users, Plus, Clock } from 'lucide-react'
+import { AlertTriangle, Calendar, FileText, Plus, Clock } from 'lucide-react'
 
 interface DashboardProps {
   onAddDocument: () => void
