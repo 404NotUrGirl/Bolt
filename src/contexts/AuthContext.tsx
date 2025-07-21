@@ -63,6 +63,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signInWithOTP = async (mobile: string) => {
+    // Check if Supabase is properly configured
+    if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL === 'https://your-project.supabase.co') {
+      throw new Error('Please configure your Supabase credentials in the .env file')
+    }
+
     const { error } = await supabase.auth.signInWithOtp({
       phone: mobile,
     })
@@ -70,6 +75,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const verifyOTP = async (mobile: string, otp: string) => {
+    // Check if Supabase is properly configured
+    if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL === 'https://your-project.supabase.co') {
+      throw new Error('Please configure your Supabase credentials in the .env file')
+    }
+
     const { error } = await supabase.auth.verifyOtp({
       phone: mobile,
       token: otp,

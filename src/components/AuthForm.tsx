@@ -20,7 +20,15 @@ export default function AuthForm() {
       await signInWithOTP(mobile)
       setStep('otp')
     } catch (error: any) {
-      setError(error.message || 'Failed to send OTP')
+      if (error.message.includes('configure your Supabase credentials')) {
+        setError('Please set up your Supabase credentials. Check the console for instructions.')
+        console.error('🔧 Setup Required: Please configure your Supabase credentials in the .env file')
+        console.log('1. Copy .env.example to .env')
+        console.log('2. Replace the placeholder values with your actual Supabase URL and anon key')
+        console.log('3. Restart the development server')
+      } else {
+        setError(error.message || 'Failed to send OTP. Please check your connection.')
+      }
     } finally {
       setLoading(false)
     }
@@ -34,7 +42,11 @@ export default function AuthForm() {
     try {
       await verifyOTP(mobile, otp)
     } catch (error: any) {
-      setError(error.message || 'Invalid OTP')
+      if (error.message.includes('configure your Supabase credentials')) {
+        setError('Please set up your Supabase credentials. Check the console for instructions.')
+      } else {
+        setError(error.message || 'Invalid OTP. Please try again.')
+      }
     } finally {
       setLoading(false)
     }
