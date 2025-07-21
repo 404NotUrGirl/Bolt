@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { supabase } from '../lib/supabase'
+import { supabase, Document } from '../lib/supabase'
 import { X, Save, Calendar, User, FileText } from 'lucide-react'
 
-interface Document {
-  id?: string
+interface DocumentFormState {
   document_type: string
   document_name: string
   document_number: string
@@ -48,7 +47,7 @@ const relationships = [
 export default function DocumentForm({ document, onClose, onSave }: DocumentFormProps) {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState<Document>({
+  const [formData, setFormData] = useState<DocumentFormState>({
     document_type: '',
     document_name: '',
     document_number: '',
@@ -121,7 +120,7 @@ export default function DocumentForm({ document, onClose, onSave }: DocumentForm
     }
   }
 
-  const handleChange = (field: keyof Document, value: string) => {
+  const handleChange = (field: keyof DocumentFormState, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 

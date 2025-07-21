@@ -9,6 +9,8 @@ if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KE
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+export type Document = Database['public']['Tables']['documents']['Row']
+
 export type Database = {
   public: {
     Tables: {

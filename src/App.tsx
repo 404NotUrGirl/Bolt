@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import AuthForm from './components/AuthForm'
 import Layout from './components/Layout'
@@ -6,18 +6,7 @@ import Dashboard from './components/Dashboard'
 import DocumentList from './components/DocumentList'
 import DocumentForm from './components/DocumentForm'
 import Profile from './components/Profile'
-
-interface Document {
-  id: string
-  document_type: string
-  document_name: string
-  document_number: string | null
-  issue_date: string | null
-  expiry_date: string
-  person_name: string
-  relationship: string
-  notes: string | null
-}
+import { Document } from './lib/supabase'
 
 function AppContent() {
   const { user, loading } = useAuth()

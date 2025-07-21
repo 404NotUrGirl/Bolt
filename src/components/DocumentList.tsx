@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { supabase } from '../lib/supabase'
+import { supabase, Document } from '../lib/supabase'
 import { getDaysUntilExpiry, getExpiryStatus, formatDate } from '../lib/utils'
 import { Plus, Search, Filter, Edit2, Trash2, FileText, Calendar } from 'lucide-react'
-
-interface Document {
-  id: string
-  document_type: string
-  document_name: string
-  document_number: string | null
-  issue_date: string | null
-  expiry_date: string
-  person_name: string
-  relationship: string
-  notes: string | null
-}
 
 interface DocumentListProps {
   onAddDocument: () => void
